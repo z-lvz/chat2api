@@ -1,3 +1,8 @@
+# fly.toml app configuration file generated for chatgpt2api on 2025-05-17T02:34:36Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'chatgpt2api'
 primary_region = 'sin'
 
@@ -5,17 +10,14 @@ primary_region = 'sin'
 
 [http_service]
   internal_port = 5005
-  force_https          = true
-  auto_start_machines  = true
-  auto_stop_machines   = false
-  min_machines_running = 1
-  processes            = ["app"]
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
-  [http_service.concurrency]
-    type       = "requests"
-    soft_limit = 9999
-    hard_limit = 9999
-
-[mounts]
-  source = "data"
-  destination = "/app/data"
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 2048
